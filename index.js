@@ -74,17 +74,6 @@ app.get("/api/exercicio6", (req, res) => {
   res.json({ resultado });
 });
 
-/*
-app.get("/api/exercicio6", (req, res) => {
-  const duracao = parseFloat(req.query.duracao);
-  const hr = parseFloat(req.query.hr);
-  const min = parseFloat(req.query.min);
-  const seg = parseFloat(req.query.seg);
-  const resultado = (min = duracao / 60);
-
-  res.json({ resultado });
-}); */
-
 /* FUP que leia um valor em quilometros e converta para metros e centimetro */
 app.get("/api/exercicio7", (req, res) => {
   const km = parseFloat(req.query.km);
@@ -105,6 +94,24 @@ app.get("/api/exercicio8", (req, res) => {
   }
 
   res.json({ resultado });
+});
+
+/* FUP que calcule a média aritmética das 3 notas de um aluno e mostre, além do valor da média, uma mensagem de "Aprovado", caso a média seja igual ou superior a 7, a mensagem "Recuperação", caso a média se igual ou superior a 5 e inferior a 7, ou a mensagem “Reprovado”, caso a média seja inferior a 5. */
+app.get("/api/exercicio9", (req, res) => {
+  const n1 = parseFloat(req.query.n1);
+  const n2 = parseFloat(req.query.n2);
+  const n3 = parseFloat(req.query.n3);
+
+  const resultado = (n1 + n2 + n3) / 3;
+  var msg = "";
+
+  if (resultado >= 7) {
+    msg = "Aprovado!";
+  } else if (resultado >= 5 && resultado < 7) {
+    msg = "Recuperação";
+  } else msg = "Reprovado";
+
+  res.json({ resultado, msg });
 });
 
 app.listen(3000, () => {
