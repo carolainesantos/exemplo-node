@@ -85,6 +85,28 @@ app.get("/api/exercicio6", (req, res) => {
   res.json({ resultado });
 }); */
 
+/* FUP que leia um valor em quilometros e converta para metros e centimetro */
+app.get("/api/exercicio7", (req, res) => {
+  const km = parseFloat(req.query.km);
+  const metros = Math.floor(km * 1000);
+  const centimetros = Math.floor(km * 100000);
+
+  const resultado = { metros, centimetros };
+  res.json({ resultado });
+});
+
+/* FUP que peça um número e imprima a tabuada deste número */
+app.get("/api/exercicio8", (req, res) => {
+  const num = parseFloat(req.query.num);
+  const resultado = {};
+
+  for (let i = 1; i <= 10; i++) {
+    resultado[`multiplicacao_${i}`] = num * i;
+  }
+
+  res.json({ resultado });
+});
+
 app.listen(3000, () => {
   console.log("Servidor rodando na porta 3000");
 });
