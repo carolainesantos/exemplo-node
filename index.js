@@ -114,6 +114,26 @@ app.get("/api/exercicio9", (req, res) => {
   res.json({ resultado, msg });
 });
 
+/* FUP que calcule o IMC - solicite se é H ou M e faça o calculo */
+app.get("/api/exercicio10", (req, res) => {
+  const h = parseFloat(req.query.h);
+  const sexo = req.query.sexo;
+  let imc;
+
+  if (sexo === "H") {
+    imc = 72.7 * Math.pow(h, 2) - 58;
+  } else if (sexo === "M") {
+    imc = 62.1 * Math.pow(h, 2) - 44.7;
+  } else {
+    res
+      .status(400)
+      .json({ erro: "Sexo inválido. Use 'H' para homem ou 'M' para mulher." });
+    return;
+  }
+
+  res.json({ imc });
+});
+
 app.listen(3000, () => {
   console.log("Servidor rodando na porta 3000");
 });
