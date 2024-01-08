@@ -32,6 +32,20 @@ app.get("/api/exercicio2", (req, res) => {
   res.json({ resultado });
 });
 
+/*FUP que solicite o peso de 5 
+pessoas e calcule a media. Imprima o resultado */
+app.get("/api/exercicio3", (req, res) => {
+  const p1 = parseFloat(req.query.p1);
+  const p2 = parseFloat(req.query.p2);
+  const p3 = parseFloat(req.query.p3);
+  const p4 = parseFloat(req.query.p4);
+  const p5 = parseFloat(req.query.p5);
+
+  const resultado = (p1 + p2 + p3 + p4 + p5) / 5;
+
+  res.json({ resultado });
+});
+
 app.listen(3000, () => {
   console.log("Servidor rodando na porta 3000");
 });
