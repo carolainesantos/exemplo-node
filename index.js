@@ -216,7 +216,7 @@ app.post("/api/exercicio14", (req, res) => {
     resultado = num2 + " é maior";
   }
   if (num1 === num2) {
-    resultado = "O núm " + num1 + ", " + num2 + " tem o mesmo valor";
+    resultado = "Os números tem o mesmo valor";
   } else resultado = num1 + " é maior";
 
   res.status(200).json({ resultado });
