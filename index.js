@@ -206,6 +206,22 @@ app.post("/api/exercicio13", (req, res) => {
   res.status(200).json({ resultado });
 });
 
+/* FUP que solicite dois numero e verifique qual é o maior */
+app.post("/api/exercicio14", (req, res) => {
+  const num1 = parseFloat(req.body.num1);
+  const num2 = parseFloat(req.body.num2);
+  let resultado = req.body.resultado;
+
+  if (num1 < num2) {
+    resultado = num2 + " é maior";
+  }
+  if (num1 === num2) {
+    resultado = "O núm " + num1 + ", " + num2 + " tem o mesmo valor";
+  } else resultado = num1 + " é maior";
+
+  res.status(200).json({ resultado });
+});
+
 app.listen(3000, () => {
   console.log("Servidor rodando na porta 3000");
 });
