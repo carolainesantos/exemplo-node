@@ -195,6 +195,16 @@ app.post("/api/exercicio12", (req, res) => {
 });
 
 /* FUP que peça um número e imprima uma mensagem se esse número é positivo ou negativo*/
+app.post("/api/exercicio13", (req, res) => {
+  const num = parseFloat(req.body.num);
+  let resultado = req.body.resultado;
+
+  if (num < 0) {
+    resultado = "Negativo";
+  } else resultado = "Positivo";
+
+  res.status(200).json({ resultado });
+});
 
 app.listen(3000, () => {
   console.log("Servidor rodando na porta 3000");
