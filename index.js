@@ -56,7 +56,9 @@ app.post("/api/exercicio3", (req, res) => {
   res.status(200).json({ resultado });
 });
 
-/* Ler uma temperatura em graus Celsius e apresentá-la convertida em graus Fahrenheit. A fórmula de conversão é : F = (9*C+160)/5 Sendo F a temperatura em Fahrenheit e C a temperatura em Celsius.*/
+/* Ler uma temperatura em graus Celsius e apresentá-la convertida em graus Fahrenheit. 
+A fórmula de conversão é : F = (9*C+160)/5 
+Sendo F a temperatura em Fahrenheit e C a temperatura em Celsius.*/
 app.post("/api/exercicio4", (req, res) => {
   const celsius = parseFloat(req.body.celsius);
   const resultado = (9 * celsius + 160) / 5;
@@ -106,7 +108,12 @@ app.post("/api/exercicio8", (req, res) => {
   res.status(200).json({ resultado });
 });
 
-/* FUP que calcule a média aritmética das 3 notas de um aluno e mostre, além do valor da média, uma mensagem de "Aprovado", caso a média seja igual ou superior a 7, a mensagem "Recuperação", caso a média se igual ou superior a 5 e inferior a 7, ou a mensagem “Reprovado”, caso a média seja inferior a 5. */
+/* FUP que calcule a média aritmética das 3 notas de um aluno 
+e mostre, além do valor da média, uma mensagem de "Aprovado", 
+caso a média seja igual ou superior a 7, a mensagem 
+"Recuperação", caso a média se igual ou superior a 
+5 e inferior a 7, ou a mensagem “Reprovado”, 
+caso a média seja inferior a 5. */
 app.post("/api/exercicio9", (req, res) => {
   const n1 = parseFloat(req.body.n1);
   const n2 = parseFloat(req.body.n2);
@@ -140,6 +147,54 @@ app.post("/api/exercicio10", (req, res) => {
 });
 
 /* FUP que solicite a operação (+,-,/,*) e dois numeros, calcule a operação solicitada e informe o resultado */
+app.post("/api/exercicio11", (req, res) => {
+  const operacao = req.body.operacao;
+  const num1 = parseFloat(req.body.num1);
+  const num2 = parseFloat(req.body.num2);
+
+  let resultado;
+
+  switch (operacao) {
+    case "+":
+      resultado = num1 + num2;
+      break;
+    case "-":
+      resultado = num1 - num2;
+      break;
+    case "*":
+      resultado = num1 * num2;
+      break;
+    case "/":
+      if (num2 !== 0) {
+        resultado = num1 / num2;
+      } else {
+        res.status(400).json({ erro: "Divisão por zero não é permitida." });
+        return;
+      }
+      break;
+    default:
+      res
+        .status(400)
+        .json({ erro: "Operação inválida. Use '+', '-', '*' ou '/'." });
+      return;
+  }
+
+  res.json({ resultado });
+});
+
+/* FUP que solicite um numero e veja se ele é par ou impar */
+app.post("/api/exercicio12", (req, res) => {
+  const num = parseFloat(req.body.num);
+  let resultado = req.body.resultado;
+
+  if (num % 2 == 0) {
+    resultado = "Par";
+  } else resultado = "Ímpar";
+
+  res.status(200).json({ resultado });
+});
+
+/* FUP que peça um número e imprima uma mensagem se esse número é positivo ou negativo*/
 
 app.listen(3000, () => {
   console.log("Servidor rodando na porta 3000");
